@@ -1,8 +1,8 @@
 
 
 //IMPORTA OS ARQUIVOS JSON
-const data1 = require("./data/broken_database_1.json")
-const data2 = require("./data/broken_database_2.json")
+const data1 = require("./db/broken_database_1.json")
+const data2 = require("./db/broken_database_2.json")
 const fs = require("fs")
 
 
@@ -23,30 +23,18 @@ for (const key in data1) {
     if (typeof(data1[key].vendas == "string")) {
         data1[key].vendas = parseInt(data1[key].vendas) 
     }
-    //CRIA UM ELEMENTO MARCA_NOME NO BD1 BASEADO NO ID COM O NOME DA MARCA DO BD2
-    for (const key in data1) {
-        data1[key].id_marca_
-        for (key2 in data2) {
-            if (data1[key].id_marca_ === data2[key2].id_marca){
-                data1[key].nome_marca = data2[key2].marca
-    
-            }
-    
-        }
-    }
-
-
-
 }
 
 //EXPORTA O JSON USANDO fs
-fs.writeFile("./broken_database_1_corrigid.json",JSON.stringify(data1),"utf-8", (error, resultado)=> {
-    if (error) {
-        console.log(error);
-        return
+fs.writeFile("./src/db/broken_database_1_corrigid.json",JSON.stringify(data1),"utf-8", (erro)=> {
+    if (erro) {
+        console.log("ERRO ESCRITA DB 1");
     }
-
-    console.log(resultado);
+});
+fs.writeFile("./src/db/broken_database_2_corrigid.json",JSON.stringify(data2),"utf-8", (erro)=> {
+    if (erro) {
+        console.log("ERRO ESCRITA DB 2");
+    }
 });
 
 
